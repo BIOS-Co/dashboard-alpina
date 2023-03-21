@@ -98,17 +98,17 @@ explainer_risk = ClassifierExplainer(risk_model, X_risk, labels=["Prediabetes, s
 
 # Define the dashboards
 
-db_adn_enfermedad = ExplainerDashboard(explainer_adn_enfermedad, title="Modelo de enfermedad según ADN", description="Modelo con exactitud estimada de 67%")
-db_adn_metabolismo = ExplainerDashboard(explainer_adn_metabolismo, title="Modelo de metabolismo según ADN", description="Modelo con exactitud estimada de 89%")
-db_clinicos_enfermedad = ExplainerDashboard(explainer_clinicos_enfermedad, title="Modelo de enfermedad según datos clínicos", description="Modelo con exactitud estimada de 76%")
-db_clinicos_metabolismo = ExplainerDashboard(explainer_clinicos_metabolismo, title="Modelo de metabolismo según datos clínicos", description="Modelo con exactitud estimada de 85%")
-db_microbiota_enfermedad = ExplainerDashboard(explainer_microbiota_enfermedad, title="Modelo de enfermedad según microbiota", description="Modelo con exactitud estimada de 67%")
-db_microbiota_metabolismo = ExplainerDashboard(explainer_microbiota_metabolismo, title="Modelo de metabolismo según microbiota", description="Modelo con exactitud estimada de 78%")
-db_risk = ExplainerDashboard(explainer_risk, title="Modelo de Riesgo", description="Modelo que calcula la probabilidad conjunta del riesgo metabólico y riesgo de enfermedad de un paciente, utilizando datos de ADN y clínicos, respectivamente.")
+db_adn_enfermedad = ExplainerDashboard(explainer_adn_enfermedad, title="Modelo de enfermedad según ADN", description="Modelo con exactitud estimada de 67%", shap_dependence= False)
+db_adn_metabolismo = ExplainerDashboard(explainer_adn_metabolismo, title="Modelo de metabolismo según ADN", description="Modelo con exactitud estimada de 89%", shap_dependence= False)
+db_clinicos_enfermedad = ExplainerDashboard(explainer_clinicos_enfermedad, title="Modelo de enfermedad según datos clínicos", description="Modelo con exactitud estimada de 76%", shap_dependence= False)
+db_clinicos_metabolismo = ExplainerDashboard(explainer_clinicos_metabolismo, title="Modelo de metabolismo según datos clínicos", description="Modelo con exactitud estimada de 85%", shap_dependence= False)
+db_microbiota_enfermedad = ExplainerDashboard(explainer_microbiota_enfermedad, title="Modelo de enfermedad según microbiota", description="Modelo con exactitud estimada de 67%", shap_dependence= False)
+db_microbiota_metabolismo = ExplainerDashboard(explainer_microbiota_metabolismo, title="Modelo de metabolismo según microbiota", description="Modelo con exactitud estimada de 78%", shap_dependence= False)
+db_risk = ExplainerDashboard(explainer_risk, title="Modelo de Riesgo", description="Modelo que calcula la probabilidad conjunta del riesgo metabólico y riesgo de enfermedad de un paciente, utilizando datos de ADN y clínicos, respectivamente.", shap_dependence= False)
 
 # Define the hub:
 
-hub = ExplainerHub([db_risk,db_adn_enfermedad, db_adn_metabolismo, db_clinicos_enfermedad, db_clinicos_metabolismo, db_microbiota_enfermedad, db_microbiota_metabolismo], title = "Analítica predictiva", description= "Tableros de analítica predictiva para predicción de riesgo", logins=[['Alpina', 'alpina-bios2023']],
+hub = ExplainerHub([db_risk,db_adn_enfermedad, db_adn_metabolismo, db_clinicos_enfermedad, db_clinicos_metabolismo, db_microbiota_enfermedad, db_microbiota_metabolismo], title = "Analítica predictiva", description= "Tableros de predicción de riesgo en pacientes según datos clínicos, microbióticos y genéticos.", logins=[['Alpina', 'alpina-bios2023']],
         db_users=dict(db_risk=['Alpina'], db_adn_enfermedad=['Alpina'], db_adn_metabolismo=['Alpina'], db_clinicos_enfermedad=['Alpina'], db_clinicos_metabolismo=['Alpina'], db_microbiota_enfermedad=['Alpina'], db_microbiota_metabolismo=['Alpina']), img = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Alpina_S.A._logo.svg/2560px-Alpina_S.A._logo.svg.png")
 hub.add_user("Alpina", "alpina-bios2023")
 hub.run(port=2021)
